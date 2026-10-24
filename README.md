@@ -1,0 +1,2 @@
+# symposium
+classical mechanics symposium
