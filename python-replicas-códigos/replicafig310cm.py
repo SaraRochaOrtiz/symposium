@@ -58,19 +58,24 @@ def energia(theta, O1, O2, v):
    Omega = O1 * E1 + O2*Gamma
    v_cm = v*E1 + np.cross(Omega, A)
    return 0.5*Omega @ I @ Omega + 0.5 * m * v_cm @ v_cm + m * g * A @ Gamma 
+
 #integracion
 t = np.linspace(0, t_final, 4001)
-sol = solve_ivp(ec_mov, (0, t_final), estado0, t_eval=t, method="DOP853", rtol=1e-10, atol=1e-12)
+sol = solve_ivp(ec_mov, (0, t_final), estado0, t_eval=t,
+                method="DOP853", rtol=1e-10, atol=1e-12)
 theta, O1, O2, v, psi, x, y = sol.y
-#comprobacion: energia conservada
+
+# comprobacion: la energía debe conservarse
 E = np.array([energia(*s) for s in sol.y[:4].T])
 print(f"Variación máxima de la energía: {np.abs(E - E[0]).max():.1e} J  (E0 = {E[0]:.3f} J)")
-#tiempo y posicion en el hielo
-def ceros(t,f):
-   i = np.where(np.sign(f[:-1]) * np.sign(f[1:]) < 0)[0]
-   return t[i] - f[i] * (t[i+1] - t[i]) / (f[i+1] - f[i])
+
+#tiempos y posicion en el hielo
+def ceros(t, f):
+    i = np.where(np.sign(f[:-1]) * np.sign(f[1:]) < 0)[0]
+    return t[i] - f[i] * (t[i + 1] - t[i]) / (f[i + 1] - f[i])
+
 t_O1 = ceros(t, O1)
-t_v= ceros(t,v)
+t_v = ceros(t, v)
 x_O1, y_O1 = np.interp(t_O1, t, x), np.interp(t_O1, t, y)
 x_v, y_v = np.interp(t_v, t, x), np.interp(t_v, t, y)
 
