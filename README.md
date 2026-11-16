@@ -1,2 +1,4 @@
 # symposium
 classical mechanics symposium
+______________________________________________________________________________________________________________________________________
+¡Hola! Soy Sara Rocha, este es mi proyecto de simposio. En este se encontrarán diferentes carpetas
