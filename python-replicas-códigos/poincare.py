@@ -52,14 +52,14 @@ def campo(z, A1):
     b = np.array([punto(E1, ang0), punto(Gamma, ang0), punto(E1, lin0)])
 
 
-def columna(dOmega, dY):
+    def columna(dOmega, dY):
         dP = m * (dY + cruz(dOmega, A))
         ang = Ivec * dOmega + cruz(A, dP)
         return np.array([punto(E1, ang), punto(Gamma, ang), punto(E1, dP)])
-cero3 = 0 * E1
-M = np.stack([columna(E1, cero3), columna(Gamma, cero3), columna(cero3, E1)], axis=1)  
-x = np.linalg.solve(M.transpose(2, 0, 1), -b.T[..., None])[..., 0].T                   
-return np.array([O1, x[0], x[1], x[2]])
+    cero3 = 0 * E1
+    M = np.stack([columna(E1, cero3), columna(Gamma, cero3), columna(cero3, E1)], axis=1)  
+    x = np.linalg.solve(M.transpose(2, 0, 1), -b.T[..., None])[..., 0].T                   
+    return np.array([O1, x[0], x[1], x[2]])
 
 def paso_rk4(z, A1):
     k1 = campo(z, A1)
