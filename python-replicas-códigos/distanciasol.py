@@ -125,5 +125,5 @@ ax.legend(loc="lower right", fontsize=9)
 ax.grid(alpha=0.3)
 
 fig.tight_layout()
-fig.savefig("fig4_superior_der.png", dpi=180)
+fig.savefig("distanciasol.png", dpi=180)
 plt.show()
