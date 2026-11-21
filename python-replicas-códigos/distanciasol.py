@@ -111,7 +111,7 @@ lam, intercepto = np.polyfit(t_aj, log_aj, 1)
 print(f"Exponente de Lyapunov (pendiente del ajuste): lambda = {lam:.3f} 1/s   (artículo: ~0.165 1/s)")
 
 #plot
-colores = ["darkpink", "violet", "orange"]              
+colores = ["mediumvioletred", "violet", "orange"]              
 fig, ax = plt.subplots(figsize=(6, 5))
 for delta, c, O2 in zip(deltas, colores, Omega2_iniciales):
     ax.plot(t, np.log(delta), color=c, lw=0.9, label=rf"$\Omega_2(0) = {O2}$")
