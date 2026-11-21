@@ -52,6 +52,7 @@ def aceleraciones(theta, O1, O2, v):
 
 
 def ec_mov(t, estado):
+    theta, O1, O2, v = estado
     dO1, dO2, dv = aceleraciones(theta, O1, O2, v)
     return [O1, dO1, dO2, dv]           
 
